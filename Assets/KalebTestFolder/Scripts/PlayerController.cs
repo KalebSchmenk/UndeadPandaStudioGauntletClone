@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] float speed = 5.0f;
+    [SerializeField] float speed = 0.05f;
 
     private bool shootingGun = false;
 
@@ -34,33 +34,20 @@ public class PlayerController : MonoBehaviour
 
     private void RotatePlayer()
     {
-        Vector3 lookTowards = new Vector3(0.0f, 0.0f, 0.0f);
+        RaycastHit hit;
 
-        lookTowards.z = Input.GetAxis("Vertical");
-        lookTowards.x = Input.GetAxis("Horizontal");
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (lookTowards.x == 0.0f && lookTowards.z == 0.0f) return;
+        if (Physics.Raycast(ray, out hit))
+        {
+            var direction = hit.point - transform.position;
+            direction.y = 0f;
+            direction.Normalize();
+            transform.forward = direction;
+        }
 
-        Quaternion rotation = Quaternion.LookRotation(lookTowards);
-        transform.rotation = rotation;
+        // Implement controller rotation
+  
     }
-
-    public void QuickTurnTo(Vector3 turnTo)
-    {
-        transform.LookAt(turnTo);
-        //transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
-    }
-
-    public void Shooting()
-    {
-        shootingGun = true;
-        StartCoroutine(ShootingMovementPause());
-    }
-
-    IEnumerator ShootingMovementPause()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        shootingGun = false;
-    }
+    
 }

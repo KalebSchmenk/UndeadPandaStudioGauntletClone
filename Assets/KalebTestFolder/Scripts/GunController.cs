@@ -27,16 +27,7 @@ public class GunController : MonoBehaviour
 
             StartCoroutine(GunCooldown());
 
-            PlayerScript.Shooting();
-
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                RayCastShoot();
-            }
-            else
-            {
-                NormalShoot();
-            }
+            NormalShoot();
         }
 
     }
@@ -48,25 +39,10 @@ public class GunController : MonoBehaviour
         bulletObject.transform.rotation = Player.transform.rotation;
     }
 
-    private void RayCastShoot()
-    {
-        RaycastHit hit;
-
-        var ray = mainCam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            PlayerScript.QuickTurnTo(hit.point);
-        }
-
-        var bulletObject = Instantiate(bullet, barrelLocation.position, Quaternion.identity);
-        bulletObject.transform.rotation = Player.transform.rotation;
-
-    }
 
     IEnumerator GunCooldown()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.75f);
 
         firedGun = false;
     }

@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] float bulletSpeed = 5.0f;
+    [SerializeField] float bulletSpeed = 50.0f;
+    [SerializeField] Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb.AddForce(transform.forward * bulletSpeed);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnCollisionEnter(Collision collision)
     {
-       transform.Translate(Vector3.forward * Time.deltaTime * bulletSpeed, Space.Self);
+        if (collision.gameObject.CompareTag("Enemy")) 
+        {
+            Debug.Log("Bullet hit an enemy. Implement functionality");
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
