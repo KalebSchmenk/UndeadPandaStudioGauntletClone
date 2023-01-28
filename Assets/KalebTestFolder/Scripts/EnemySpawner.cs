@@ -17,21 +17,23 @@ public class EnemySpawner : MonoBehaviour
         spawnAt = spawnLocal.transform; 
     }
 
-    private void StartSpawning(GameObject enemy)
+    private void StartSpawning(GameObject chaseTarget)
     {
-        StartCoroutine(IESpawningEnemy());
+        StartCoroutine(IESpawningEnemy(chaseTarget));
     }
 
 
-    IEnumerator IESpawningEnemy()
+    IEnumerator IESpawningEnemy(GameObject target)
     {
         spawningEnemies = true;
 
-        Instantiate(enemy, spawnAt.position, Quaternion.identity);
+        var tempObj = Instantiate(enemy, spawnAt.position, Quaternion.identity);
+
+        tempObj.GetComponent<EnemyAIController>().SetTarget(target);
 
         yield return new WaitForSeconds(7);
 
-        StartCoroutine(IESpawningEnemy());
+        StartCoroutine(IESpawningEnemy(target));
 
     }
 
@@ -39,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(!spawningEnemies) StartSpawning(enemy);
+            if(!spawningEnemies) StartSpawning(other.gameObject);
         }
     }
 

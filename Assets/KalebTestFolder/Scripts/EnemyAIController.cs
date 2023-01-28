@@ -15,8 +15,8 @@ public class EnemyAIController : MonoBehaviour
     {
         // This could have been passed through when instantiated via a function
         // but I don't want to waste time with this time-sensitive project
-        var tempArrayVar = GameObject.FindGameObjectsWithTag("Player");
-        player = tempArrayVar[0];
+        player = GameObject.FindGameObjectWithTag("Player");
+        
 
         enemyNavMeshAgent = GetComponent<NavMeshAgent>();
     }
@@ -34,5 +34,11 @@ public class EnemyAIController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    // Future proofing with the ability to dynamically set a target
+    public void SetTarget(GameObject target)
+    {
+        player = target;
     }
 }
