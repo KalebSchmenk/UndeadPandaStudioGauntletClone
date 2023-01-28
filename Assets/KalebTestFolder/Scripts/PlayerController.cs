@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float speed = 0.05f;
 
-    private bool shootingGun = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +16,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!shootingGun)
-        {
-            MovePlayer();
-            RotatePlayer();
-        }
+
+        MovePlayer();
+        RotatePlayer();
+
     }
 
 
@@ -49,5 +46,6 @@ public class PlayerController : MonoBehaviour
         // Implement controller rotation
   
     }
-    
+
+
 }

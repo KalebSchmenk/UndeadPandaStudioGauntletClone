@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8948926197423993467}
   - component: {fileID: 341243799}
   - component: {fileID: 766539302467028259}
+  - component: {fileID: -2566651268765298948}
   m_Layer: 0
   m_Name: PlayerConcept
   m_TagString: Player
@@ -144,6 +145,19 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.25, y: 2, z: 1.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &-2566651268765298948
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920657068143823}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 19.53
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2477103721473667407
 GameObject:
