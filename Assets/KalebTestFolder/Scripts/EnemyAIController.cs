@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAIController : MonoBehaviour
 {
+    [SerializeField] int damageOutput = 1;
+    [SerializeField] int enemyHealth = 1;
+
     private GameObject player;
 
     private NavMeshAgent enemyNavMeshAgent;
@@ -30,9 +33,33 @@ public class EnemyAIController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            collision.gameObject.GetComponent<PlayerController>().HurtPlayer(damageOutput);
+
+            enemyHealth -= 1;
+
+            Debug.Log("An enemy has hit the player. It has done " + damageOutput + " damage to the player and has received 1 damage in return.");
+            Debug.Log("This enemy is at " + enemyHealth + " hp.");
+
+            if (enemyHealth <= 0)
+            {
+                Debug.Log("Enemy died");
+                Destroy(this.gameObject);
+            }
+
+        }
+        else if (collision.gameObject.CompareTag("Bullet"))
+        {
+            enemyHealth -= 1;
+
+            Debug.Log("An enemy has been shot dealing 1 damage leaving the enemy at " + enemyHealth + " hp");
+
+            if (enemyHealth <= 0)
+            {
+                Debug.Log("Enemy died");
+                Destroy(this.gameObject);
+            }
         }
     }
 

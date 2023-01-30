@@ -17,7 +17,6 @@ public class BulletController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy")) 
         {
-            Debug.Log("Bullet hit an enemy. Implement functionality");
             Destroy(this.gameObject);
         }
         else

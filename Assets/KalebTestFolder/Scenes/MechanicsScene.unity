@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 374b9e7ae49344d4992ee931f1365104, type: 2}
---- !u!1 &341243793 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1920657068143823, guid: 32d0f05da3748ed4fb6063729c14413c, type: 3}
-  m_PrefabInstance: {fileID: 1927941774801282531}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &392245001
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce517032048e7ac4a8f7a3aceafb51d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 341243793}
   cameraHeight: 30
 --- !u!1 &812984495
 GameObject:
@@ -1063,6 +1057,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6415924152244155840, guid: 9959eae08d64231498f0823cfe170d80, type: 3}
+      propertyPath: enemyHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415924152244155840, guid: 9959eae08d64231498f0823cfe170d80, type: 3}
+      propertyPath: damageOutput
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9959eae08d64231498f0823cfe170d80, type: 3}
 --- !u!1001 &1927941774801282531
@@ -1073,8 +1075,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 341243799, guid: 32d0f05da3748ed4fb6063729c14413c, type: 3}
+      propertyPath: glowstickCount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 341243799, guid: 32d0f05da3748ed4fb6063729c14413c, type: 3}
       propertyPath: isUsingController
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1920657068143823, guid: 32d0f05da3748ed4fb6063729c14413c, type: 3}
       propertyPath: m_Name

@@ -10,12 +10,12 @@ public class GunController : MonoBehaviour
     [SerializeField] Camera mainCam;
     [SerializeField] GameObject Player;
 
-    PlayerController PlayerScript;
     private bool firedGun = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        PlayerScript = Player.GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame

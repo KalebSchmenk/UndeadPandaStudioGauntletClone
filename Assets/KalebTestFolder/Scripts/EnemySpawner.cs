@@ -6,7 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject spawnLocal;
-    [SerializeField] int health = 2;
+    [SerializeField] int spawnerHealth = 2;
+    [SerializeField] float spawnEnemiesEvery = 7.0f;
 
     private Transform spawnAt;
     private bool spawningEnemies = false;
@@ -31,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
         tempObj.GetComponent<EnemyAIController>().SetTarget(target);
 
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(spawnEnemiesEvery);
 
         StartCoroutine(IESpawningEnemy(target));
 
@@ -49,8 +50,15 @@ public class EnemySpawner : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            health--;
-            if (health <= 0) Destroy(this.gameObject);
+            spawnerHealth--;
+
+            Debug.Log("An enemy spawner has been shot dealing 1 damage leaving the spawner at " + spawnerHealth + " hp");
+
+            if (spawnerHealth <= 0)
+            {
+                Debug.Log("An enemy spawner has been shot dealing 1 damage and destroying it");
+                Destroy(this.gameObject);
+            }
         }
     }
 }

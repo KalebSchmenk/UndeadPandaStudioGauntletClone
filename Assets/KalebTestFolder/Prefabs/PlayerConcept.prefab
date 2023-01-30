@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 1918198313943961645}
   - component: {fileID: 8948926197423993467}
   - component: {fileID: 341243799}
-  - component: {fileID: 766539302467028259}
   - component: {fileID: -2566651268765298948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerConcept
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -38,6 +37,7 @@ Transform:
   - {fileID: 7820859174386141874}
   - {fileID: 519969083287298667}
   - {fileID: 6537150098060098647}
+  - {fileID: 6947775188984028214}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -100,7 +100,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1920657068143823}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -118,7 +118,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &341243799
@@ -133,24 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f1e36d85bda8744b4a23b7d439fd2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: 5
   glowstick: {fileID: 8455340029548057588, guid: f0d0c93d7be29ac4ca9289e65a977b77, type: 3}
   speed: 5
-  glowstickCount: 5
+  glowstickCount: 15
   glowstickSpawn: {fileID: 2477103721473667407}
   isUsingController: 0
---- !u!65 &766539302467028259
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920657068143823}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.25, y: 2, z: 1.25}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &-2566651268765298948
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -173,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8906544150878544733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BarrelPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +195,7 @@ GameObject:
   - component: {fileID: 3373905346601307408}
   - component: {fileID: 6878818831013779854}
   - component: {fileID: 4186146783116491471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PointingTowards
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,10 +276,104 @@ BoxCollider:
   m_GameObject: {fileID: 3646903498760799981}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4809758894589550051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6947775188984028214}
+  - component: {fileID: 701187918960180323}
+  m_Layer: 6
+  m_Name: Point Light (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6947775188984028214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4809758894589550051}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.040000916, y: 2.926, z: 0.03999996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6207707927365905193}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!108 &701187918960180323
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4809758894589550051}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 4.02
+  m_Range: 4.13
+  m_SpotAngle: 38.26
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &6129705122574565907
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +387,7 @@ GameObject:
   - component: {fileID: 4032990613212866102}
   - component: {fileID: 1878998107450462875}
   - component: {fileID: 3319688251474914824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6537150098060098647}
   - component: {fileID: 7574033548567651888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
