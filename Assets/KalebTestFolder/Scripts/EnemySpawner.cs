@@ -18,13 +18,6 @@ public class EnemySpawner : MonoBehaviour
         spawnAt = spawnLocal.transform; 
     }
 
-    // FIXME!!! This function doesn't need to exist. Just start the coroutine where ever
-    // this function is being called. 
-    private void StartSpawning(GameObject chaseTarget)
-    {
-        StartCoroutine(IESpawningEnemy(chaseTarget));
-    }
-
     // Coroutine that spawns the given enemy prefab at the given interval
     IEnumerator IESpawningEnemy(GameObject target)
     {
@@ -45,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(!spawningEnemies) StartSpawning(other.gameObject);
+            if(!spawningEnemies) IESpawningEnemy(other.gameObject);
         }
     }
 

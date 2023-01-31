@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject glowstickSpawn;
 
     public int keyCount = 0;
-
     public bool isUsingController = false;
-    private bool isGlowstickCooldown = false;
+    public bool isShooting = false;
 
+    private bool isGlowstickCooldown = false;
+    float turnSmoothVelocity;
+    private float turnSmoothTime = 0.1f;
     private Rigidbody rb;
 
     // Start is called before the first frame update
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (isShooting) return;
+
         // FIXME!!! Since we access the same inputs multiple times we should store them
 
         transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * speed, Space.World);
@@ -70,7 +74,7 @@ public class PlayerController : MonoBehaviour
     private void RotatePlayer()
     {
         // Mouse rotation controls
-        if(!isUsingController)
+        /*if(!isUsingController)
         {
             RaycastHit hit;
 
@@ -82,6 +86,21 @@ public class PlayerController : MonoBehaviour
                 direction.y = 0f;
                 direction.Normalize();
                 transform.forward = direction;
+            }
+        }*/
+
+        if (!isUsingController && !isShooting)
+        {
+            float horiztonalInput = Input.GetAxisRaw("Horizontal");
+            float verticalInput = Input.GetAxisRaw("Vertical");
+
+            Vector3 direction = new Vector3(horiztonalInput, 0f, verticalInput).normalized;
+
+            if (direction.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
         }
 
@@ -97,7 +116,7 @@ public class PlayerController : MonoBehaviour
     // Throws given glowstick prefab in the direction the player is facing
     private void ThrowGlowstick()
     {
-        StartCoroutine(GlowstickCooldown());
+        StartCoroutine(IEGlowstickCooldown());
 
         glowstickCount--;
 
@@ -110,7 +129,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Stops glowsticks being spammed
-    IEnumerator GlowstickCooldown()
+    IEnumerator IEGlowstickCooldown()
     {
         isGlowstickCooldown= true;
 

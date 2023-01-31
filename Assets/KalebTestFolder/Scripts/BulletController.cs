@@ -13,16 +13,11 @@ public class BulletController : MonoBehaviour
         rb.AddForce(transform.forward * bulletSpeed);
     }
 
-    // FIXME
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) 
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        
+        Destroy(this.gameObject);
+ 
     }
 }

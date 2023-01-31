@@ -7,11 +7,16 @@ public class GunController : MonoBehaviour
 
     [SerializeField] GameObject bullet;
     [SerializeField] Transform barrelLocation;
-    [SerializeField] Camera mainCam;
-    [SerializeField] GameObject Player;
+    [SerializeField] GameObject player;
+    [SerializeField] float shootCooldown = 1.5f;
 
     private bool firedGun = false;
+    private PlayerController playerScript;
 
+    private void Start()
+    {
+        playerScript = player.GetComponent<PlayerController>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,7 +25,7 @@ public class GunController : MonoBehaviour
         {
             firedGun = true;
 
-            StartCoroutine(GunCooldown());
+            StartCoroutine(IEGunCooldown());
 
             NormalShoot();
         }
@@ -30,15 +35,30 @@ public class GunController : MonoBehaviour
 
     private void NormalShoot()
     {
+        playerScript.isShooting = true;
+
+        RaycastHit hit;
+
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            var direction = hit.point - transform.position;
+            direction.y = 0f;
+            direction.Normalize();
+            player.transform.forward = direction;
+        }
+
         var bulletObject = Instantiate(bullet, barrelLocation.position, Quaternion.identity);
-        bulletObject.transform.rotation = Player.transform.rotation;
+        bulletObject.transform.rotation = player.transform.rotation;
     }
 
 
-    IEnumerator GunCooldown()
+    IEnumerator IEGunCooldown()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
 
         firedGun = false;
+        playerScript.isShooting = false;
     }
 }

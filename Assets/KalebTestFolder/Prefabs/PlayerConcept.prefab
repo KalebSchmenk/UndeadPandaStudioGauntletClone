@@ -138,6 +138,7 @@ MonoBehaviour:
   speed: 5
   glowstickCount: 15
   glowstickSpawn: {fileID: 2477103721473667407}
+  keyCount: 0
   isUsingController: 0
 --- !u!135 &-2566651268765298948
 SphereCollider:
@@ -487,8 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 8343801729161910699, guid: a54cb53cf0a96ca419e6fcd6ba0d4566, type: 3}
   barrelLocation: {fileID: 8906544150878544733}
-  mainCam: {fileID: 0}
-  Player: {fileID: 1920657068143823}
+  player: {fileID: 1920657068143823}
 --- !u!1 &6555454639199393311
 GameObject:
   m_ObjectHideFlags: 0
