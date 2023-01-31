@@ -18,12 +18,14 @@ public class EnemySpawner : MonoBehaviour
         spawnAt = spawnLocal.transform; 
     }
 
+    // FIXME!!! This function doesn't need to exist. Just start the coroutine where ever
+    // this function is being called. 
     private void StartSpawning(GameObject chaseTarget)
     {
         StartCoroutine(IESpawningEnemy(chaseTarget));
     }
 
-
+    // Coroutine that spawns the given enemy prefab at the given interval
     IEnumerator IESpawningEnemy(GameObject target)
     {
         spawningEnemies = true;
@@ -38,6 +40,7 @@ public class EnemySpawner : MonoBehaviour
 
     }
 
+    // Player "nearby" sphere trigger detector that starts the spawning coroutine 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -46,6 +49,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    // Health damage system
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))

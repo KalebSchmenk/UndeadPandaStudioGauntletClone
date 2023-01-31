@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int glowstickCount = 15;
     [SerializeField] GameObject glowstickSpawn;
 
+    public int keyCount = 0;
+
     public bool isUsingController = false;
     private bool isGlowstickCooldown = false;
 
@@ -24,9 +26,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Uses Input Axis "Jump" since that is what spacebar is in the Input system
+        // This allows the controller to throw a glowstick as well via the same if statement
         if (Input.GetAxis("Jump") > 0) 
         {
-            if(glowstickCount > 0 && !isGlowstickCooldown) { ThrowGlowstick(); StartCoroutine(GlowstickCooldown()); }        
+            if(glowstickCount > 0 && !isGlowstickCooldown) ThrowGlowstick();       
         }
 
 
@@ -59,6 +63,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // If the player wants to use a controller, they must do so via some setting that changes
+    // the bool value of isUsingController. The reason for this is because these two character
+    // controls are handled differently. One uses the location of the mouse on the screen via a raycast,
+    // the other uses the input of the rightstick.
     private void RotatePlayer()
     {
         // Mouse rotation controls
@@ -86,8 +94,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Throws given glowstick prefab in the direction the player is facing
     private void ThrowGlowstick()
     {
+        StartCoroutine(GlowstickCooldown());
+
         glowstickCount--;
 
         var glowstickObj = Instantiate(glowstick, glowstickSpawn.transform.position, Quaternion.identity);
@@ -98,6 +109,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Stops glowsticks being spammed
     IEnumerator GlowstickCooldown()
     {
         isGlowstickCooldown= true;
@@ -107,6 +119,9 @@ public class PlayerController : MonoBehaviour
         isGlowstickCooldown = false;
     }
 
+    // Instead of having a public int for player health, we use a public function
+    // that ensures we are recieving the correct type of damage (int) and does the math
+    // here
     public void HurtPlayer(int damage)
     {
         playerHealth -= damage;

@@ -6,13 +6,14 @@ public class BulletController : MonoBehaviour
 {
     [SerializeField] float bulletSpeed = 50.0f;
     [SerializeField] Rigidbody rb;
-    // Start is called before the first frame update
+    
+    
     void Start()
     {
         rb.AddForce(transform.forward * bulletSpeed);
     }
 
-
+    // FIXME
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy")) 
