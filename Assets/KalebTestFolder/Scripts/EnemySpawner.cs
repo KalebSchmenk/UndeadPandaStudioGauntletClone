@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if(!spawningEnemies) IESpawningEnemy(other.gameObject);
+            if(!spawningEnemies) StartCoroutine(IESpawningEnemy(other.gameObject));
         }
     }
 

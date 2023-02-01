@@ -139,12 +139,19 @@ public class PlayerController : MonoBehaviour
     }
 
     // Instead of having a public int for player health, we use a public function
-    // that ensures we are recieving the correct type of damage (int) and does the math
+    // that ensures we are recieving the correct type of damage/health (int) and does the math
     // here
     public void HurtPlayer(int damage)
     {
         playerHealth -= damage;
 
         Debug.Log("Player has been hurt. Health is now at: " + playerHealth);
+    }
+
+    public void HealPlayer(int heal)
+    {
+        playerHealth += heal;
+
+        Debug.Log("Player has been healed. Health is now at: " + playerHealth);
     }
 }

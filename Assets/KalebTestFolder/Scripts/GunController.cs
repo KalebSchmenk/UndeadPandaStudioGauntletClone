@@ -8,7 +8,6 @@ public class GunController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] Transform barrelLocation;
     [SerializeField] GameObject player;
-    [SerializeField] float shootCooldown = 1.5f;
 
     private bool firedGun = false;
     private PlayerController playerScript;
