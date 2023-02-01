@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8948926197423993467}
   - component: {fileID: 341243799}
   - component: {fileID: -2566651268765298948}
+  - component: {fileID: 7586426525103890282}
   m_Layer: 6
   m_Name: PlayerConcept
   m_TagString: Player
@@ -138,8 +139,13 @@ MonoBehaviour:
   speed: 5
   glowstickCount: 15
   glowstickSpawn: {fileID: 2477103721473667407}
+  soundOnHeal: {fileID: 0}
+  soundOnDeath: {fileID: 0}
+  soundOnDamage: {fileID: 0}
   keyCount: 0
   isUsingController: 0
+  isShooting: 0
+  playerDead: 0
 --- !u!135 &-2566651268765298948
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -153,6 +159,14 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!81 &7586426525103890282
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920657068143823}
+  m_Enabled: 1
 --- !u!1 &2477103721473667407
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +402,8 @@ GameObject:
   - component: {fileID: 4032990613212866102}
   - component: {fileID: 1878998107450462875}
   - component: {fileID: 3319688251474914824}
+  - component: {fileID: 480864817524374292}
+  - component: {fileID: 2764205308682756077}
   m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
@@ -489,6 +505,116 @@ MonoBehaviour:
   bullet: {fileID: 8343801729161910699, guid: a54cb53cf0a96ca419e6fcd6ba0d4566, type: 3}
   barrelLocation: {fileID: 8906544150878544733}
   player: {fileID: 1920657068143823}
+  gunShot: {fileID: 0}
+--- !u!82 &480864817524374292
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129705122574565907}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2764205308682756077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129705122574565907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e24069c86eedee4e9efb0e46a2a52ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 480864817524374292}
 --- !u!1 &6555454639199393311
 GameObject:
   m_ObjectHideFlags: 0

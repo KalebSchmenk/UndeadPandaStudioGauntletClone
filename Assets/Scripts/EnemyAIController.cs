@@ -7,10 +7,14 @@ public class EnemyAIController : MonoBehaviour
 {
     [SerializeField] int damageOutput = 1;
     [SerializeField] int enemyHealth = 1;
+    [SerializeField] int scoreOnKill = 10;
+
+    [SerializeField] AudioClip soundOnDeath;
+    [SerializeField] AudioClip soundOnDamage;
 
     private GameObject player;
-
     private NavMeshAgent enemyNavMeshAgent;
+    private ObjectSoundController soundController;
 
 
     // Start is called before the first frame update
@@ -22,6 +26,8 @@ public class EnemyAIController : MonoBehaviour
         
 
         enemyNavMeshAgent = GetComponent<NavMeshAgent>();
+
+        soundController = GetComponent<ObjectSoundController>();
     }
 
     // Update is called once per frame
@@ -39,6 +45,8 @@ public class EnemyAIController : MonoBehaviour
 
             enemyHealth -= 1;
 
+            soundController.PlayAudio(soundOnDamage);
+
             Debug.Log("An enemy has hit the player. It has done " + damageOutput + " damage to the player and has received 1 damage in return.");
             Debug.Log("This enemy is at " + enemyHealth + " hp.");
 
@@ -53,10 +61,16 @@ public class EnemyAIController : MonoBehaviour
         {
             enemyHealth -= 1;
 
+            soundController.PlayAudio(soundOnDamage);
+
             Debug.Log("An enemy has been shot dealing 1 damage leaving the enemy at " + enemyHealth + " hp");
 
             if (enemyHealth <= 0)
             {
+                ScoreManager.AddScore(scoreOnKill);
+
+                soundController.PlayAudio(soundOnDeath);
+
                 Debug.Log("Enemy died");
                 Destroy(this.gameObject);
             }

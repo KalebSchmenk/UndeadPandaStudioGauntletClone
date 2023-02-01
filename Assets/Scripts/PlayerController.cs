@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int glowstickCount = 15;
     [SerializeField] GameObject glowstickSpawn;
 
+    [SerializeField] AudioClip soundOnHeal;
+    [SerializeField] AudioClip soundOnDeath;
+    [SerializeField] AudioClip soundOnDamage;
+    [SerializeField] AudioClip soundOnGlowstickThrow;
+
     public int keyCount = 0;
     public bool isUsingController = false;
     public bool isShooting = false;
@@ -18,11 +24,16 @@ public class PlayerController : MonoBehaviour
     float turnSmoothVelocity;
     private float turnSmoothTime = 0.1f;
     private Rigidbody rb;
+    private bool isGameOver = false;
+    public bool playerDead = false;
+    private ObjectSoundController soundController;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        soundController = GetComponent<ObjectSoundController>();
     }
 
     // Update is called once per frame
@@ -30,20 +41,30 @@ public class PlayerController : MonoBehaviour
     {
         // Uses Input Axis "Jump" since that is what spacebar is in the Input system
         // This allows the controller to throw a glowstick as well via the same if statement
-        if (Input.GetAxis("Jump") > 0) 
+        if (Input.GetAxis("Jump") > 0 && !playerDead) 
         {
             if(glowstickCount > 0 && !isGlowstickCooldown) ThrowGlowstick();       
         }
 
-
-        if (playerHealth <= 0)
+        // Game over handler
+        if (playerHealth <= 0 && !isGameOver)
         {
-            Debug.Log("Player health is equal to or under 0. Implement functionality");
+            playerDead = true;
+
+            Debug.Log("Score before death: " + ScoreManager.score);
+
+            ScoreManager.score = 0;
+
+            Debug.Log("Player health is equal to or under 0.");
+            Debug.Log(ScoreManager.score);
+
+            StartCoroutine(GameOver());
         }
     }
 
     private void FixedUpdate()
     {
+        if (playerDead) return;
         MovePlayer();
         RotatePlayer();
     }
@@ -55,8 +76,8 @@ public class PlayerController : MonoBehaviour
 
         // FIXME!!! Since we access the same inputs multiple times we should store them
 
-        transform.Translate(0, 0, Input.GetAxis("Vertical") * Time.deltaTime * speed, Space.World);
-        transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * speed, 0, 0, Space.World);
+        transform.Translate(0, 0, Input.GetAxis("Vertical") * 0.02f * speed, Space.World); // 0.02f was Time.deltaTime
+        transform.Translate(Input.GetAxis("Horizontal") * 0.02f * speed, 0, 0, Space.World);
 
         // Colliding with enemies would sometimes add a force to the player that would
         // never stop slowly moving the player. This fixes that bug
@@ -73,22 +94,6 @@ public class PlayerController : MonoBehaviour
     // the other uses the input of the rightstick.
     private void RotatePlayer()
     {
-        // Mouse rotation controls
-        /*if(!isUsingController)
-        {
-            RaycastHit hit;
-
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out hit))
-            {
-                var direction = hit.point - transform.position;
-                direction.y = 0f;
-                direction.Normalize();
-                transform.forward = direction;
-            }
-        }*/
-
         if (!isUsingController && !isShooting)
         {
             float horiztonalInput = Input.GetAxisRaw("Horizontal");
@@ -118,6 +123,8 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine(IEGlowstickCooldown());
 
+        soundController.PlayAudio(soundOnGlowstickThrow);
+
         glowstickCount--;
 
         var glowstickObj = Instantiate(glowstick, glowstickSpawn.transform.position, Quaternion.identity);
@@ -145,6 +152,8 @@ public class PlayerController : MonoBehaviour
     {
         playerHealth -= damage;
 
+        soundController.PlayAudio(soundOnDamage);
+
         Debug.Log("Player has been hurt. Health is now at: " + playerHealth);
     }
 
@@ -152,6 +161,21 @@ public class PlayerController : MonoBehaviour
     {
         playerHealth += heal;
 
+        soundController.PlayAudio(soundOnHeal);
+
         Debug.Log("Player has been healed. Health is now at: " + playerHealth);
+    }
+
+    IEnumerator GameOver()
+    {
+        isGameOver = true;
+
+        soundController.PlayAudio(soundOnDeath);
+
+        Debug.Log("Game over, about to return to main menu. Enable game over overlay");
+
+        yield return new WaitForSeconds(5.0f);
+
+        SceneManager.LoadScene("MainMenu");
     }
 }

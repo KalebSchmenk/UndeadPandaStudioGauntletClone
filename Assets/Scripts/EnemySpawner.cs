@@ -8,14 +8,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject spawnLocal;
     [SerializeField] int spawnerHealth = 2;
     [SerializeField] float spawnEnemiesEvery = 7.0f;
+    [SerializeField] int scoreOnKill = 25;
+
+    [SerializeField] AudioClip soundOnDeath;
+    [SerializeField] AudioClip soundOnDamage;
 
     private Transform spawnAt;
     private bool spawningEnemies = false;
-    
+    private ObjectSoundController soundController;
+
     // Start is called before the first frame update
     void Start()
     {
-        spawnAt = spawnLocal.transform; 
+        spawnAt = spawnLocal.transform;
+
+        soundController = GetComponent<ObjectSoundController>();
     }
 
     // Coroutine that spawns the given enemy prefab at the given interval
@@ -49,10 +56,16 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnerHealth--;
 
+            soundController.PlayAudio(soundOnDamage);
+
             Debug.Log("An enemy spawner has been shot dealing 1 damage leaving the spawner at " + spawnerHealth + " hp");
 
             if (spawnerHealth <= 0)
             {
+                ScoreManager.AddScore(scoreOnKill);
+
+                soundController.PlayAudio(soundOnDeath);
+
                 Debug.Log("An enemy spawner has been shot dealing 1 damage and destroying it");
                 Destroy(this.gameObject);
             }
