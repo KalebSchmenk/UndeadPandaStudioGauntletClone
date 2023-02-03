@@ -50,7 +50,7 @@ public class GunController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                var direction = hit.point - transform.position;
+                var direction = hit.point - player.transform.position;
                 direction.y = 0f;
                 direction.Normalize();
                 player.transform.forward = direction;
