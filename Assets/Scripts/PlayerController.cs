@@ -60,6 +60,11 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(GameOver());
         }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     private void FixedUpdate()
