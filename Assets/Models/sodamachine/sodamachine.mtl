@@ -1,0 +1,23 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.6393133)
+
+newmtl lambert4
+kd 0.5 0.5 0.5
+illum 1
+
+newmtl machine
+kd 0.2196 0.9338 0.8425
+illum 1
+
+newmtl sodamain
+kd 1 0.2352 0.2352
+illum 1
+
+newmtl machinesign
+kd 1 1 1
+illum 1
+
+newmtl aluminum
+kd 0.718 0.534192 0.534192
+illum 1
+
