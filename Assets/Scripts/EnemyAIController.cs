@@ -8,6 +8,7 @@ public class EnemyAIController : MonoBehaviour
     [SerializeField] int damageOutput = 1;
     [SerializeField] int enemyHealth = 1;
     [SerializeField] int scoreOnKill = 10;
+    [SerializeField] float maxDistanceFromPlayer = 25.0f;
 
     [SerializeField] AudioClip soundOnDeath;
     [SerializeField] AudioClip soundOnDamage;
@@ -34,6 +35,10 @@ public class EnemyAIController : MonoBehaviour
     void Update()
     {
         enemyNavMeshAgent.SetDestination(player.transform.position);
+
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distance > maxDistanceFromPlayer) Destroy(this.gameObject);
     }
 
 

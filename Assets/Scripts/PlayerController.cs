@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 0.05f;
     [SerializeField] int glowstickCount = 15;
     [SerializeField] GameObject glowstickSpawn;
+    [SerializeField] TextMeshProUGUI glowstickText;
+    [SerializeField] TextMeshProUGUI healthText;
 
     [SerializeField] AudioClip soundOnHeal;
     [SerializeField] AudioClip soundOnDeath;
@@ -65,6 +69,8 @@ public class PlayerController : MonoBehaviour
         {
             Application.Quit();
         }
+
+        HandleUI();
     }
 
     private void FixedUpdate()
@@ -72,6 +78,12 @@ public class PlayerController : MonoBehaviour
         if (playerDead) return;
         MovePlayer();
         RotatePlayer();
+    }
+
+    private void HandleUI()
+    {
+        glowstickText.text = "X " + glowstickCount;
+        healthText.text = "X " + playerHealth;
     }
 
 

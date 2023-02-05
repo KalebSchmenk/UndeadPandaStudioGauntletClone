@@ -434,7 +434,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522657002}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &522657004
 Camera:
   m_ObjectHideFlags: 0
@@ -1501,6 +1501,18 @@ PrefabInstance:
     - target: {fileID: 2285013613040105648, guid: bca87b9f833e36245ab1d7aa1e722565, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487119545079160008, guid: bca87b9f833e36245ab1d7aa1e722565, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487119545079160008, guid: bca87b9f833e36245ab1d7aa1e722565, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566268309603727467, guid: bca87b9f833e36245ab1d7aa1e722565, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9145368394941609490, guid: bca87b9f833e36245ab1d7aa1e722565, type: 3}
       propertyPath: m_RootOrder

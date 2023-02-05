@@ -9,7 +9,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int spawnerHealth = 2;
     [SerializeField] float spawnEnemiesEvery = 7.0f;
     [SerializeField] int scoreOnKill = 25;
-    [SerializeField] int maxSpawn = 10;
 
     [SerializeField] AudioClip soundOnDeath;
     [SerializeField] AudioClip soundOnDamage;
@@ -29,11 +28,9 @@ public class EnemySpawner : MonoBehaviour
     // Coroutine that spawns the given enemy prefab at the given interval
     IEnumerator IESpawningEnemy(GameObject target)
     {
-        if (maxSpawn <= 0) yield break;
-
-        maxSpawn--;
-
         spawningEnemies = true;
+
+        Debug.Log("Spawning enemies. I am: " +this.gameObject);
 
         var tempObj = Instantiate(enemy, spawnAt.position, Quaternion.identity);
 
@@ -51,6 +48,16 @@ public class EnemySpawner : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             if(!spawningEnemies) StartCoroutine(IESpawningEnemy(other.gameObject));
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            spawningEnemies = false;    
+            Debug.Log("Stopping coroutines");
+            StopAllCoroutines();
         }
     }
 
