@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+
+    private GameObject player;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            player = collision.gameObject;
             ChangeScene();
         }
     }
@@ -21,7 +24,7 @@ public class SceneController : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().buildIndex == 2)
         {
-            SceneManager.LoadScene("MainMenu");
+            StartCoroutine(player.GetComponent<PlayerController>().GameOver(true));
         }
     }
 }

@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (spawnerHealth <= 0)
             {
-                ScoreManager.score += scoreOnKill;
+                PlayerController.score += scoreOnKill;
 
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
 

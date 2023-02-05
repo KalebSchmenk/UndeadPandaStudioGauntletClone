@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] GameObject GameOverObj;
     [SerializeField] TextMeshProUGUI GameOverText;
+    [SerializeField] GameObject GameWinObj;
+    [SerializeField] TextMeshProUGUI GameWinText;
+
+    public static int score = 0;
 
     [SerializeField] AudioClip soundOnHeal;
     [SerializeField] AudioClip soundOnDeath;
@@ -67,7 +71,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Player health is equal to or under 0.");
             Debug.Log(ScoreManager.score);
 
-            StartCoroutine(GameOver());
+            StartCoroutine(GameOver(false));
         }
 
         if (Input.GetKey("escape"))
@@ -117,7 +121,7 @@ public class PlayerController : MonoBehaviour
     private void RotatePlayer()
     {
         //if (!isUsingController && !isShooting)
-        if (!isShooting || isGameOver)
+        if (!isShooting && !isGameOver)
         {
             float horiztonalInput = Input.GetAxisRaw("Horizontal");
             float verticalInput = Input.GetAxisRaw("Vertical");
@@ -181,18 +185,36 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player has been healed. Health is now at: " + playerHealth);
     }
 
-    IEnumerator GameOver()
+    public IEnumerator GameOver(bool wonGame)
     {
         isGameOver = true;
+        if (wonGame)
+        {
+            GameWinText.text = "You win! Final Score: " + PlayerController.score;
+            GameWinObj.SetActive(true);
+        }
+        else
+        {
+            soundController.PlayAudio(soundOnDeath);
 
-        soundController.PlayAudio(soundOnDeath);
+            Debug.Log("Game over, about to return to main menu. Enable game over overlay");
+            Debug.Log(ScoreManager.score);
+
+
+            GameOverText.text = "Game Over! Final Score: " + PlayerController.score;
+            GameOverObj.SetActive(true);
+        }
+
+        /*soundController.PlayAudio(soundOnDeath);
 
         Debug.Log("Game over, about to return to main menu. Enable game over overlay");
         Debug.Log(ScoreManager.score);
 
-        GameOverText.text = "Game Over! Final Score: " + ScoreManager.score;
-        GameOverObj.SetActive(true);
-
+  
+        GameOverText.text = "Game Over! Final Score: " + PlayerController.score;
+        GameOverObj.SetActive(true);*/
+        
+      
         yield return new WaitForSeconds(5.0f);
 
         SceneManager.LoadScene("MainMenu");
