@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8e00af2e3e8e9f74e98726f9b28f888e
+guid: 9ce7ad7002e864644827b297a6ab8480
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,13 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: glowstick
-    second: {fileID: 2100000, guid: 681bbbc216c5b244884f71b8dd06ffd8, type: 2}
+      name: blanket
+    second: {fileID: 2100000, guid: e0431700cf3c6f54facbd8bd9a0b0df3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lighteffect
-    second: {fileID: 2100000, guid: 460ffc7925b143b41a88fd2661f7ce0d, type: 2}
+      name: mattresswhites
+    second: {fileID: 2100000, guid: 9fb877298d15f674bb3ef5fd24c42a3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: c1db6a9356d7cf944b1da8fa8782f89f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: woodboards
+    second: {fileID: 2100000, guid: b50f3ce3ff2667a4fa22ffe9fe30707d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

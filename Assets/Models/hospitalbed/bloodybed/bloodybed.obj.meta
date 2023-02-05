@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 8e00af2e3e8e9f74e98726f9b28f888e
+guid: 5e860b9bd7cfce8498c86832d34652a6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: glowstick
-    second: {fileID: 2100000, guid: 681bbbc216c5b244884f71b8dd06ffd8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lighteffect
-    second: {fileID: 2100000, guid: 460ffc7925b143b41a88fd2661f7ce0d, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

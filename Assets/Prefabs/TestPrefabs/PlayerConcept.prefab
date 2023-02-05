@@ -137,10 +137,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 5
-  glowstick: {fileID: 8455340029548057588, guid: f0d0c93d7be29ac4ca9289e65a977b77, type: 3}
+  glowstick: {fileID: 866825203881819501, guid: acb814b5648d4414facd5f94576250fe, type: 3}
   speed: 5
   glowstickCount: 15
   glowstickSpawn: {fileID: 2477103721473667407}
+  glowstickText: {fileID: 0}
+  healthText: {fileID: 0}
   soundOnHeal: {fileID: 8300000, guid: 468a144545a8a374d9d4ec327c5b5ca0, type: 3}
   soundOnDeath: {fileID: 0}
   soundOnDamage: {fileID: 8300000, guid: 5f921370185463f4f8026579b9bae845, type: 3}
