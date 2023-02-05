@@ -122,7 +122,6 @@ MonoBehaviour:
   spawnerHealth: 2
   spawnEnemiesEvery: 7
   scoreOnKill: 25
-  maxSpawn: 10
   soundOnDeath: {fileID: 8300000, guid: 4ea1e867274ce144082c9098a459e047, type: 3}
   soundOnDamage: {fileID: 8300000, guid: 3a06885c77835db428a395fd5ae33e43, type: 3}
 --- !u!136 &445118306474009824
@@ -150,7 +149,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
