@@ -134,7 +134,8 @@ MonoBehaviour:
   damageOutput: 1
   enemyHealth: 1
   scoreOnKill: 10
-  soundOnDeath: {fileID: 0}
+  maxDistanceFromPlayer: 25
+  soundOnDeath: {fileID: 8300000, guid: 6faa55b04b4451349a81c9ac80f5fa1a, type: 3}
   soundOnDamage: {fileID: 0}
 --- !u!195 &7700698811289865798
 NavMeshAgent:

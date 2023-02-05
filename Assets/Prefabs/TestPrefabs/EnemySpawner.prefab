@@ -122,7 +122,7 @@ MonoBehaviour:
   spawnerHealth: 2
   spawnEnemiesEvery: 7
   scoreOnKill: 25
-  soundOnDeath: {fileID: 8300000, guid: 4ea1e867274ce144082c9098a459e047, type: 3}
+  soundOnDeath: {fileID: 8300000, guid: 8955b06b43bc3cf448489c4cb0db56a5, type: 3}
   soundOnDamage: {fileID: 8300000, guid: 3a06885c77835db428a395fd5ae33e43, type: 3}
 --- !u!136 &445118306474009824
 CapsuleCollider:
