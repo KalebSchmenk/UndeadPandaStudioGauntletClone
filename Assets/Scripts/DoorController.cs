@@ -7,6 +7,8 @@ public class DoorController : MonoBehaviour
 
     PlayerController playerscript;
 
+    [SerializeField] AudioClip doorOpenSound;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -16,6 +18,8 @@ public class DoorController : MonoBehaviour
             if (playerscript.keyCount > 0)
             {
                 playerscript.keyCount--;
+
+                collision.gameObject.GetComponent<ObjectSoundController>().PlayAudio(doorOpenSound);
 
                 Destroy(this.gameObject);
             }

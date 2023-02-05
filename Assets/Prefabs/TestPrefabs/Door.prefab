@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61aafc3d664b5534a9d757295fac32b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorOpenSound: {fileID: 8300000, guid: 99a2cb194b5aadc46930cbf0103a40b7, type: 3}
 --- !u!208 &5639593420638818565
 NavMeshObstacle:
   m_ObjectHideFlags: 0
