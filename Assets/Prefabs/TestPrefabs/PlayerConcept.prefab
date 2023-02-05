@@ -141,9 +141,9 @@ MonoBehaviour:
   speed: 5
   glowstickCount: 15
   glowstickSpawn: {fileID: 2477103721473667407}
-  soundOnHeal: {fileID: 0}
+  soundOnHeal: {fileID: 8300000, guid: 468a144545a8a374d9d4ec327c5b5ca0, type: 3}
   soundOnDeath: {fileID: 0}
-  soundOnDamage: {fileID: 0}
+  soundOnDamage: {fileID: 8300000, guid: 5f921370185463f4f8026579b9bae845, type: 3}
   soundOnGlowstickThrow: {fileID: 8300000, guid: 86b6ebb2e50b6614c9bded0c7ddfc4ff, type: 3}
   keyCount: 0
   isUsingController: 0
