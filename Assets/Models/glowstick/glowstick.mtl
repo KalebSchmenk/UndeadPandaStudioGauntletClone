@@ -1,0 +1,11 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.6393133)
+
+newmtl lighteffect
+kd 0.17 1 0
+illum 1
+
+newmtl glowstick
+kd 0.583333 0.583333 0.583333
+illum 1
+
