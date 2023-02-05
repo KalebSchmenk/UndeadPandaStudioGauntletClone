@@ -74,9 +74,11 @@ public class EnemySpawner : MonoBehaviour
 
             if (spawnerHealth <= 0)
             {
-                ScoreManager.AddScore(scoreOnKill);
+                ScoreManager.score += scoreOnKill;
 
-                soundController.PlayAudio(soundOnDeath);
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+                player.GetComponent<ObjectSoundController>().PlayAudio(soundOnDeath);
 
                 Debug.Log("An enemy spawner has been shot dealing 1 damage and destroying it");
                 Destroy(this.gameObject);

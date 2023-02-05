@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] TextMeshProUGUI glowstickText;
     [SerializeField] TextMeshProUGUI healthText;
 
+    [SerializeField] GameObject GameOverObj;
+    [SerializeField] TextMeshProUGUI GameOverText;
+
     [SerializeField] AudioClip soundOnHeal;
     [SerializeField] AudioClip soundOnDeath;
     [SerializeField] AudioClip soundOnDamage;
@@ -38,6 +41,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         soundController = GetComponent<ObjectSoundController>();
+
+        isUsingController = ControllerManager.isUsingController;
     }
 
     // Update is called once per frame
@@ -89,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (isShooting) return;
+        if (isShooting || isGameOver) return;
 
         // FIXME!!! Since we access the same inputs multiple times we should store them
 
@@ -111,7 +116,8 @@ public class PlayerController : MonoBehaviour
     // the other uses the input of the rightstick.
     private void RotatePlayer()
     {
-        if (!isUsingController && !isShooting)
+        //if (!isUsingController && !isShooting)
+        if (!isShooting || isGameOver)
         {
             float horiztonalInput = Input.GetAxisRaw("Horizontal");
             float verticalInput = Input.GetAxisRaw("Vertical");
@@ -125,14 +131,6 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
         }
-
-        // Controller rotation controls
-        if (Input.GetAxisRaw("RightStickHorizontal") != 0 || Input.GetAxisRaw("RightStickVertical") != 0)
-        {
-            Vector3 lookTowards = new Vector3(Input.GetAxisRaw("RightStickHorizontal"), 0, Input.GetAxisRaw("RightStickVertical"));
-            transform.rotation = Quaternion.LookRotation(lookTowards);
-        }
-
     }
 
     // Throws given glowstick prefab in the direction the player is facing
@@ -190,6 +188,10 @@ public class PlayerController : MonoBehaviour
         soundController.PlayAudio(soundOnDeath);
 
         Debug.Log("Game over, about to return to main menu. Enable game over overlay");
+        Debug.Log(ScoreManager.score);
+
+        GameOverText.text = "Game Over! Final Score: " + ScoreManager.score;
+        GameOverObj.SetActive(true);
 
         yield return new WaitForSeconds(5.0f);
 

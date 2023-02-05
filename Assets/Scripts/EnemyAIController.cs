@@ -72,7 +72,7 @@ public class EnemyAIController : MonoBehaviour
 
             if (enemyHealth <= 0)
             {
-                ScoreManager.AddScore(scoreOnKill);
+                ScoreManager.score += scoreOnKill;
 
                 soundController.PlayAudio(soundOnDeath);
 
