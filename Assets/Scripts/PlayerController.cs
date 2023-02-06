@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool isGameOver = false;
     public bool playerDead = false;
     private ObjectSoundController soundController;
+    private Animator playerAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,8 @@ public class PlayerController : MonoBehaviour
         soundController = GetComponent<ObjectSoundController>();
 
         isUsingController = ControllerManager.isUsingController;
+
+        playerAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -110,6 +113,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
         {
             rb.velocity = Vector3.zero;
+            playerAnim.Play("player_idle");
+        }
+        else
+        {
+            playerAnim.Play("player_run");
         }
 
     }

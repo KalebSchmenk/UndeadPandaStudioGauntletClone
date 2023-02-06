@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b633e3f15c4c224ab5b6502ec6a7a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 243415409660487209, guid: 9959eae08d64231498f0823cfe170d80, type: 3}
+  enemy: {fileID: 8527754338614560712, guid: dbd0fde040c317847a3be36ca260cb70, type: 3}
   spawnLocal: {fileID: 2683489057485120216}
   spawnerHealth: 2
   spawnEnemiesEvery: 7
